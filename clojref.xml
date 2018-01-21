@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="./clojref.xsl"?>
+
+<!DOCTYPE reference [
+    <!ENTITY linkspace "&#9141;">
+]>
+
+<reference>
+    <title> Clojure Quick Reference Card </title>
+
+
+    <section name="Predicates">
+
+        <spec> (<function>=</function><onemore><place>number</place></onemore>) </spec>
+        <desc>
+            <returnvalue>true</returnvalue> if all numbers are equal via Java equals(). </desc>
+
+        <spec> (<function>==</function><onemore><place>number</place></onemore>) </spec>
+        <desc>
+            <returnvalue>true</returnvalue> if all numbers are equal in value. </desc>
+
+        <spec> (<function>neg?</function><place>a</place>) </spec>
+        <spec> (<function>zero?</function><place>a</place>) </spec>
+        <spec> (<function>pos?</function><place>a</place>) </spec>
+        <desc>
+            <returnvalue>true</returnvalue> if a &lt; 0, a = 0, or a &gt; 0 respectively. </desc>
+
+        <spec> (<function>even?</function><place>a</place>) </spec>
+        <spec> (<function>odd?</function><place>a</place>) </spec>
+        <desc>
+            <returnvalue>true</returnvalue> if a is even or odd, respectively. </desc>
+
+        <spec> (<function>number?</function><place>a</place>) </spec>
+        <spec> (<function>ratio?</function><place>a</place>) </spec>
+        <spec> (<function>rational?</function><place>a</place>) </spec>
+        <spec> (<function>integer?</function><place>a</place>) </spec>
+        <spec> (<function>int?</function><place>a</place>) </spec>
+        <spec> (<function>pos-int?</function><place>a</place>) </spec>
+        <spec> (<function>nat-int?</function><place>a</place>) </spec>
+        <spec> (<function>decimal?</function><place>a</place>) </spec>
+        <spec> (<function>bigdec?</function><place>a</place>) </spec>
+        <spec> (<function>float?</function><place>a</place>) </spec>
+        <spec> (<function>double?</function><place>a</place>) </spec>
+        <desc>
+            <returnvalue>true</returnvalue> if a is of indicated type. </desc>
+    </section>
+
+    <section name="Numeric Functions">
+
+        <spec> (<function>+</function>
+            <onemore><place>a</place></onemore>) </spec>
+        <spec> (<function>*</function>
+            <onemore><place>a</place></onemore>) </spec>
+        <desc> Returns <returnvalue><mo>&#931;</mo><mi>a</mi></returnvalue> or
+                    <returnvalue><mo>&#928;</mo><mi>a</mi></returnvalue> respectively. </desc>
+    </section>
+    
+    <section name="Sequence">
+        
+        <spec>(<special>do</special> <nonemore><place>form</place></nonemore> <place>lastform</place>)</spec>
+        <desc>Evaluates <math><place>forms</place></math> in order then <returnvalue><place>lastform</place></returnvalue>.</desc>
+    </section>
+    <section name="Choice">
+        <spec>(<special>if</special> <place>test</place> <place>then</place> <place>else</place>)</spec>
+        <spec>(<macro>if-not</macro> <place>test</place> <place>else</place> <place>then</place>)</spec>
+
+        <desc><returnvalue><place>then</place></returnvalue> if <place>test</place> is
+            true (non-nil, non-zero and non-false), or <returnvalue><place>else</place></returnvalue> otherwise.</desc>
+
+        <spec>(<macro>if-let</macro> [<place>var</place> <place>test</place>] <place>then</place> <optional><place>else</place></optional>)</spec>
+        <spec>(<macro>if-some</macro> [<place>var</place> <place>test</place>] <place>then</place> <optional><place>else</place></optional>)</spec>
+        
+        <desc>If <math><place>test</place></math> is true (or for <math><macro>if-some</macro></math> only non-nil),
+                    <returnvalue>(<special>let</special> [<place>var</place> <place>test</place>] <place>then</place>)</returnvalue>,
+                otherwise <returnvalue><place>else</place></returnvalue>.
+        </desc>
+
+        <spec>(<macro>when</macro> <place>test</place> <onemore><place>then</place></onemore>)</spec>
+        <spec>(<macro>when-not</macro> <place>test</place> <onemore><place>else</place></onemore>)</spec>
+        <spec>(<macro>when-let</macro> [<place>var</place> <place>test</place>] <onemore><place>then</place></onemore>)</spec>
+        <spec>(<macro>when-some</macro> [<place>var</place> <place>test</place>] <onemore><place>then</place></onemore>)</spec>
+        <desc>Equivalent to <special>if</special>, <macro>if-not</macro>, <macro>if-let</macro> and <macro>if-some</macro> but 
+            accepting multiple forms which are wrapped in an implicit <special>do</special>.</desc>
+            
+        <spec>(<macro>when-first</macro> [<place>var</place> <place>seq</place>] <onemore><place>form</place></onemore>)</spec>
+        <desc>If <place>seq</place> is true, <returnvalue>(<special>do</special> <place>forms</place>)</returnvalue> with <place>var</place>
+        bound to the first element of <place>seq</place>.</desc>
+    </section>
+    <section name="Iteration">
+
+        <spec>(<macro>loop</macro> [<nonemore><place>var</place>&linkspace;<place>binding</place></nonemore>]
+                     <nonemore><place>form</place></nonemore></spec>
+        <desc>Evaluates <place>forms</place> with the given bound vars and serves as a marker
+            for <special>recur</special>.</desc>
+
+        <spec>(<special>recur</special> <onemore><place>binding</place></onemore>)</spec>
+        <desc>Rebinds vars in the enclosing <macro>loop</macro> to the values of
+                    <place>bindings</place> in order, then returns control to the start of
+            that <macro>loop</macro>.</desc>
+
+        <spec>
+                (<function>trampoline</function> <place>f</place> <nonemore><place>args</place></nonemore>)</spec>
+        <desc>If the value of <math>(<mi>f</mi>
+                <mi>args</mi>)</math> is not a function, <returnvalue>(<place>f</place> <place>args</place>)</returnvalue>. Else, 
+                    <returnvalue>(<function>trampoline</function> (<place>f</place> <place>args</place>))</returnvalue>.</desc>
+
+        <spec>(<macro>while</macro> <place>test</place> <nonemore><place>form</place></nonemore>)</spec>
+        <desc>Evaluates <math><place>forms</place></math> until <math><place>test</place></math>
+            returns false or nil.</desc>
+    </section>
+</reference>

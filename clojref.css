@@ -1,0 +1,41 @@
+
+
+span.defaultValue {
+    border-style: solid;
+    border-width: 1px;
+    font-size: .83em;
+    vertical-align: sub;
+}
+
+span.place {
+    font-style: italic;
+}
+
+span.repeatmodifier {
+    font-size: .83em;
+    vertical-align: super;
+}
+
+span.keywordDecorator {
+    font-size: .83em;
+    vertical-align: sub;
+}
+
+span.keyword {
+    font-style: normal;
+    font-weight: bold;
+}
+
+span.returnValue {
+    border-bottom-style: solid;
+    border-width: 1px;
+    font-family: monospace;
+}
+
+span.spec {
+    font-family: monospace;
+}
+
+span.desc {
+    font-family: sans-serif;
+}

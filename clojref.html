@@ -1,0 +1,185 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title> Clojure Quick Reference Card </title>
+      <link rel="stylesheet" type="text/css" href="clojref.css">
+   </head>
+   <body>
+       Clojure Quick Reference Card 
+      
+      
+      
+      <h2>Predicates</h2>
+      <hr>
+      <dl>
+         
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">=</span><span class="place">number</span><span class="repeatmodifier">+</span>) </span></dt>
+         
+         <dd><span class="desc">▷ 
+               <span class="returnValue">true</span> if all numbers are equal via Java equals(). </span></dd><br>
+         
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">==</span><span class="place">number</span><span class="repeatmodifier">+</span>) </span></dt>
+         
+         <dd><span class="desc">▷ 
+               <span class="returnValue">true</span> if all numbers are equal in value. </span></dd><br>
+         
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">neg?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">zero?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">pos?</span><span class="place">a</span>) </span></dt>
+         
+         <dd><span class="desc">▷ 
+               <span class="returnValue">true</span> if a &lt; 0, a = 0, or a &gt; 0 respectively. </span></dd><br>
+         
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">even?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">odd?</span><span class="place">a</span>) </span></dt>
+         
+         <dd><span class="desc">▷ 
+               <span class="returnValue">true</span> if a is even or odd, respectively. </span></dd><br>
+         
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">number?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">ratio?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">rational?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">integer?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">int?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">pos-int?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">nat-int?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">decimal?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">bigdec?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">float?</span><span class="place">a</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">double?</span><span class="place">a</span>) </span></dt>
+         
+         <dd><span class="desc">▷ 
+               <span class="returnValue">true</span> if a is of indicated type. </span></dd><br>
+         
+      </dl>
+      
+      
+      <h2>Numeric Functions</h2>
+      <hr>
+      <dl>
+         
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">+</span>
+               <span class="place">a</span><span class="repeatmodifier">+</span>) </span></dt>
+         
+         <dt><span class="spec"> (<span class="keywordDecorator">f</span><span class="keyword">*</span>
+               <span class="place">a</span><span class="repeatmodifier">+</span>) </span></dt>
+         
+         <dd><span class="desc">▷  Returns <span class="returnValue">Σa</span> or
+               <span class="returnValue">Πa</span> respectively. </span></dd><br>
+         
+      </dl>
+      
+      
+      <h2>Sequence</h2>
+      <hr>
+      <dl>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">s</span><span class="keyword">do</span> <span class="place">form</span><span class="repeatmodifier">*</span> <span class="place">lastform</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Evaluates <span class="place">forms</span> in order then <span class="returnValue"><span class="place">lastform</span></span>.</span></dd><br>
+         
+      </dl>
+      
+      <h2>Choice</h2>
+      <hr>
+      <dl>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">s</span><span class="keyword">if</span> <span class="place">test</span> <span class="place">then</span> <span class="place">else</span>)</span></dt>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">if-not</span> <span class="place">test</span> <span class="place">else</span> <span class="place">then</span>)</span></dt>
+         
+         
+         <dd><span class="desc">▷ <span class="returnValue"><span class="place">then</span></span> if <span class="place">test</span> is
+               true (non-nil, non-zero and non-false), or <span class="returnValue"><span class="place">else</span></span> otherwise.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">if-let</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span> 
+               ⌞<span class="place">else</span>⌝
+               )</span></dt>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">if-some</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span> 
+               ⌞<span class="place">else</span>⌝
+               )</span></dt>
+         
+         
+         <dd><span class="desc">▷ If <span class="place">test</span> is true (or for <span class="keywordDecorator">m</span><span class="keyword">if-some</span> only non-nil),
+               <span class="returnValue">(<span class="keywordDecorator">s</span><span class="keyword">let</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span>)</span>,
+               otherwise <span class="returnValue"><span class="place">else</span></span>.
+               </span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">when</span> <span class="place">test</span> <span class="place">then</span><span class="repeatmodifier">+</span>)</span></dt>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">when-not</span> <span class="place">test</span> <span class="place">else</span><span class="repeatmodifier">+</span>)</span></dt>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">when-let</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span><span class="repeatmodifier">+</span>)</span></dt>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">when-some</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span><span class="repeatmodifier">+</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Equivalent to <span class="keywordDecorator">s</span><span class="keyword">if</span>, <span class="keywordDecorator">m</span><span class="keyword">if-not</span>, <span class="keywordDecorator">m</span><span class="keyword">if-let</span> and <span class="keywordDecorator">m</span><span class="keyword">if-some</span> but 
+               accepting multiple forms which are wrapped in an implicit <span class="keywordDecorator">s</span><span class="keyword">do</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">when-first</span> [<span class="place">var</span> <span class="place">seq</span>] <span class="place">form</span><span class="repeatmodifier">+</span>)</span></dt>
+         
+         <dd><span class="desc">▷ If <span class="place">seq</span> is true, <span class="returnValue">(<span class="keywordDecorator">s</span><span class="keyword">do</span> <span class="place">forms</span>)</span> with <span class="place">var</span>
+               bound to the first element of <span class="place">seq</span>.</span></dd><br>
+         
+      </dl>
+      
+      <h2>Iteration</h2>
+      <hr>
+      <dl>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">loop</span> [<span class="place">var</span>⎵<span class="place">binding</span><span class="repeatmodifier">*</span>]
+               <span class="place">form</span><span class="repeatmodifier">*</span></span></dt>
+         
+         <dd><span class="desc">▷ Evaluates <span class="place">forms</span> with the given bound vars and serves as a marker
+               for <span class="keywordDecorator">s</span><span class="keyword">recur</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">s</span><span class="keyword">recur</span> <span class="place">binding</span><span class="repeatmodifier">+</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Rebinds vars in the enclosing <span class="keywordDecorator">m</span><span class="keyword">loop</span> to the values of
+               <span class="place">bindings</span> in order, then returns control to the start of
+               that <span class="keywordDecorator">m</span><span class="keyword">loop</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">
+               (<span class="keywordDecorator">f</span><span class="keyword">trampoline</span> <span class="place">f</span> <span class="place">args</span><span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dd><span class="desc">▷ If the value of (f
+               args) is not a function, <span class="returnValue">(<span class="place">f</span> <span class="place">args</span>)</span>. Else, 
+               <span class="returnValue">(<span class="keywordDecorator">f</span><span class="keyword">trampoline</span> (<span class="place">f</span> <span class="place">args</span>))</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">while</span> <span class="place">test</span> <span class="place">form</span><span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Evaluates <span class="place">forms</span> until <span class="place">test</span>
+               returns false or nil.</span></dd><br>
+         
+      </dl>
+      
+   </body>
+</html>
