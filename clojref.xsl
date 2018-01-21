@@ -35,7 +35,7 @@
         <br/>
     </xsl:template>
 
-    <xsl:template match="optional">&#8990;<xsl:apply-templates/>&#8989;</xsl:template>
+    <xsl:template match="optional"><sub>&#8990;</sub><xsl:apply-templates/><sup>&#8989;</sup></xsl:template>
 
     <xsl:template match="place">
         <span class="place">

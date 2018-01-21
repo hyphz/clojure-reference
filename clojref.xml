@@ -12,48 +12,92 @@
 
     <section name="Predicates">
 
-        <spec> (<function>=</function><onemore><place>number</place></onemore>) </spec>
+        <spec>(<function>=</function> <onemore><place>val</place></onemore>)</spec>
         <desc>
-            <returnvalue>true</returnvalue> if all numbers are equal via Java equals(). </desc>
+            <returnvalue>true</returnvalue> if all <place>vals</place> are equal via Java equals(). </desc>
 
-        <spec> (<function>==</function><onemore><place>number</place></onemore>) </spec>
+        <spec>(<function>not=</function> <onemore><place>val</place></onemore>)</spec>
+        <desc><returnvalue>true</returnvalue> if not all <place>vals</place> are equal via Java equals().</desc>
+
+        <spec>(<function>identical?</function> a b)</spec>
+        <desc><returnvalue>true</returnvalue> if <place>a</place> == <place>b</place> in Java, otherwise <returnvalue>false</returnvalue></desc>
+
+        <spec>(<function>==</function> <onemore><place>number</place></onemore>) </spec>
         <desc>
-            <returnvalue>true</returnvalue> if all numbers are equal in value. </desc>
+            <returnvalue>true</returnvalue> if all <place>numbers</place> are equal in value. </desc>
 
-        <spec> (<function>neg?</function><place>a</place>) </spec>
-        <spec> (<function>zero?</function><place>a</place>) </spec>
-        <spec> (<function>pos?</function><place>a</place>) </spec>
+        <spec>(<function>&lt;</function> <onemore><place>number</place></onemore>)</spec>
+        <spec>(<function>&gt;</function> <onemore><place>number</place></onemore>)</spec>
+        <spec>(<function>&lt;=</function> <onemore><place>number</place></onemore>)</spec>
+        <spec>(<function>&gt;=</function> <onemore><place>number</place></onemore>)</spec>
+        <desc>
+            <returnvalue>true</returnvalue> if all <place>numbers</place> are in the order specified by the 
+            operator, else <returnvalue>false</returnvalue>.
+        </desc>
+        
+        <spec>(<function>neg?</function> <place>a</place>) </spec>
+        <spec>(<function>zero?</function> <place>a</place>) </spec>
+        <spec>(<function>pos?</function> <place>a</place>) </spec>
         <desc>
             <returnvalue>true</returnvalue> if a &lt; 0, a = 0, or a &gt; 0 respectively. </desc>
 
-        <spec> (<function>even?</function><place>a</place>) </spec>
-        <spec> (<function>odd?</function><place>a</place>) </spec>
+        <spec>(<function>even?</function> <place>a</place>) </spec>
+        <spec>(<function>odd?</function> <place>a</place>) </spec>
         <desc>
             <returnvalue>true</returnvalue> if a is even or odd, respectively. </desc>
 
-        <spec> (<function>number?</function><place>a</place>) </spec>
-        <spec> (<function>ratio?</function><place>a</place>) </spec>
-        <spec> (<function>rational?</function><place>a</place>) </spec>
-        <spec> (<function>integer?</function><place>a</place>) </spec>
-        <spec> (<function>int?</function><place>a</place>) </spec>
-        <spec> (<function>pos-int?</function><place>a</place>) </spec>
-        <spec> (<function>nat-int?</function><place>a</place>) </spec>
-        <spec> (<function>decimal?</function><place>a</place>) </spec>
-        <spec> (<function>bigdec?</function><place>a</place>) </spec>
-        <spec> (<function>float?</function><place>a</place>) </spec>
-        <spec> (<function>double?</function><place>a</place>) </spec>
+        <spec>(<function>number?</function> <place>a</place>) </spec>
+        <spec>(<function>ratio?</function> <place>a</place>) </spec>
+        <spec>(<function>rational?</function> <place>a</place>) </spec>
+        <spec>(<function>integer?</function> <place>a</place>) </spec>
+        <spec>(<function>int?</function> <place>a</place>) </spec>
+        <spec>(<function>pos-int?</function> <place>a</place>) </spec>
+        <spec>(<function>nat-int?</function> <place>a</place>) </spec>
+        <spec>(<function>decimal?</function> <place>a</place>) </spec>
+        <spec>(<function>bigdec?</function> <place>a</place>) </spec>
+        <spec>(<function>float?</function> <place>a</place>) </spec>
+        <spec>(<function>double?</function> <place>a</place>) </spec>
         <desc>
             <returnvalue>true</returnvalue> if a is of indicated type. </desc>
+        
+        
     </section>
 
     <section name="Numeric Functions">
 
-        <spec> (<function>+</function>
+        <spec>(<function>+</function>
             <onemore><place>a</place></onemore>) </spec>
-        <spec> (<function>*</function>
+        <spec>(<function>*</function>
             <onemore><place>a</place></onemore>) </spec>
-        <desc> Returns <returnvalue><mo>&#931;</mo><mi>a</mi></returnvalue> or
-                    <returnvalue><mo>&#928;</mo><mi>a</mi></returnvalue> respectively. </desc>
+        <desc>Returns <returnvalue>&#931;a</returnvalue> or
+                    <returnvalue>&#928;a</returnvalue> respectively. </desc>
+        
+        <spec>(<function>-</function> <place>x</place> <nonemore><place>y</place></nonemore>)</spec>
+        <desc>If no <place>ys</place> provided, <returnvalue>-<place>x</place></returnvalue>, else 
+            <returnvalue><place>x</place>-&#931;<place>ys</place></returnvalue>.</desc>
+        
+        <spec>(<function>/</function> <place>x</place> <nonemore><place>y</place></nonemore>)</spec>
+        <desc>If no <place>ys</place> provided, <returnvalue>1/<place>x</place></returnvalue>, else 
+            <returnvalue><place>x</place>/&#928;<place>ys</place></returnvalue>.</desc>
+        
+        <spec>(<function>quot</function> <place>x</place> <place>y</place>)</spec>
+        <spec>(<function>rem</function> <place>x</place> <place>y</place>)</spec>
+        <desc>Returns quotient or remainder respectively of <place>x</place>/<place>y</place>.</desc>
+        
+        <spec>(<function>mod</function> <place>x</place> <place>y</place>)</spec>
+        <desc><returnvalue><place>x</place> mod <place>y</place></returnvalue>. Unlike <function>rem</function>, a modulus is always positive.</desc>
+        
+        <spec>(<function>inc</function> <place>x</place>)</spec>
+        <spec>(<function>dec</function> <place>x</place>)</spec>
+        <desc><returnvalue><place>x+1</place></returnvalue> or <returnvalue><place>x</place>-1</returnvalue> respectively.</desc>
+
+        <spec>(<function>min</function> <onemore><place>x</place></onemore>)</spec>
+        <spec>(<function>max</function> <onemore><place>x</place></onemore>)</spec>
+        <desc>Returns the lowest, or highest, <place>x</place> respectively.</desc>
+        
+        <spec>(<function>rand</function> <defaulted default="1.0"><optional><place>x</place></optional></defaulted>)</spec>
+        <spec>(<function>rand-int</function> <place>x</place>)</spec>
+        <desc>Returns a random float or int respectively, &gt;=0 and &lt;<place>x</place>.</desc>
     </section>
     
     <section name="Sequence">
@@ -87,13 +131,20 @@
         <desc>If <place>seq</place> is true, <returnvalue>(<special>do</special> <place>forms</place>)</returnvalue> with <place>var</place>
         bound to the first element of <place>seq</place>.</desc>
         
-        <spec>(<macro>cond</macro> (<nonemore><place>test</place>&linkspace;<place>value</place></nonemore>)</spec>
+        <spec>(<macro>cond</macro> (<nonemore><place>test</place>&linkspace;<place>value</place></nonemore>))</spec>
         <desc>Evaluates each <place>test</place> in order; when one is true, corresponding <returnvalue><place>value</place></returnvalue>.</desc>
         
         <spec>(<macro>condp</macro> <place>pred</place> <place>expr</place> (<onemore><place>testexpr</place>&linkspace;<place>resultexpr</place>|<place>textexpr</place>&linkspace;:&gt;&gt;&linkspace;<place>resultfn</place></onemore> <optional><place>default</place></optional>))</spec>
         <desc>Evaluates (<place>pred</place> <place>testexpr</place> <place>expr</place>) for each <place>testexpr</place> in order. When one is 
         true, corresponding <returnvalue>resultexpr</returnvalue> or <returnvalue>(<place>resultfn</place> (<place>pred</place> <place>testexpr</place> <place>expr</place>))</returnvalue>. 
         If none are true, <returnvalue>default</returnvalue> or <exception>IllegalArgumentException</exception>.</desc>
+        
+        <spec>(<macro>cond-&gt;</macro> <place>expr</place> (<onemore><place>test</place>&linkspace;<place>form</place></onemore>)</spec>
+        <spec>(<macro>cond-&gt;&gt;</macro> <place>expr</place> (<onemore><place>test</place>&linkspace;<place>form</place></onemore>)</spec>
+        <desc>Using <macro>-&gt;</macro> or <macro>-&gt;&gt;</macro> respectively, threads <place>expr</place> through all <place>forms</place> where corresponding 
+        <place>tests</place> are true. Note that <place>expr</place> is not passed to any <place>test</place>.</desc>
+        
+        
     </section>
     <section name="Iteration">
 
