@@ -113,13 +113,9 @@
                true (non-nil, non-zero and non-false), or <span class="returnValue"><span class="place">else</span></span> otherwise.</span></dd><br>
          
          
-         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">if-let</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span> 
-               ⌞<span class="place">else</span>⌝
-               )</span></dt>
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">if-let</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span> ⌞<span class="place">else</span>⌝)</span></dt>
          
-         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">if-some</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span> 
-               ⌞<span class="place">else</span>⌝
-               )</span></dt>
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">if-some</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span> ⌞<span class="place">else</span>⌝)</span></dt>
          
          
          <dd><span class="desc">▷ If <span class="place">test</span> is true (or for <span class="keywordDecorator">m</span><span class="keyword">if-some</span> only non-nil),
@@ -144,6 +140,18 @@
          
          <dd><span class="desc">▷ If <span class="place">seq</span> is true, <span class="returnValue">(<span class="keywordDecorator">s</span><span class="keyword">do</span> <span class="place">forms</span>)</span> with <span class="place">var</span>
                bound to the first element of <span class="place">seq</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">cond</span> (<span class="place">test</span>⎵<span class="place">value</span><span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Evaluates each <span class="place">test</span> in order; when one is true, corresponding <span class="returnValue"><span class="place">value</span></span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">condp</span> <span class="place">pred</span> <span class="place">expr</span> (<span class="place">testexpr</span>⎵<span class="place">resultexpr</span>|<span class="place">textexpr</span>⎵:&gt;&gt;⎵<span class="place">resultfn</span><span class="repeatmodifier">+</span> ⌞<span class="place">default</span>⌝))</span></dt>
+         
+         <dd><span class="desc">▷ Evaluates (<span class="place">pred</span> <span class="place">testexpr</span> <span class="place">expr</span>) for each <span class="place">testexpr</span> in order. When one is 
+               true, corresponding <span class="returnValue">resultexpr</span> or <span class="returnValue">(<span class="place">resultfn</span> (<span class="place">pred</span> <span class="place">testexpr</span> <span class="place">expr</span>))</span>. 
+               If none are true, <span class="returnValue">default</span> or <span class="keywordDecorator">e</span><span class="keyword">IllegalArgumentException</span>.</span></dd><br>
          
       </dl>
       

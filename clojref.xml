@@ -86,6 +86,14 @@
         <spec>(<macro>when-first</macro> [<place>var</place> <place>seq</place>] <onemore><place>form</place></onemore>)</spec>
         <desc>If <place>seq</place> is true, <returnvalue>(<special>do</special> <place>forms</place>)</returnvalue> with <place>var</place>
         bound to the first element of <place>seq</place>.</desc>
+        
+        <spec>(<macro>cond</macro> (<nonemore><place>test</place>&linkspace;<place>value</place></nonemore>)</spec>
+        <desc>Evaluates each <place>test</place> in order; when one is true, corresponding <returnvalue><place>value</place></returnvalue>.</desc>
+        
+        <spec>(<macro>condp</macro> <place>pred</place> <place>expr</place> (<onemore><place>testexpr</place>&linkspace;<place>resultexpr</place>|<place>textexpr</place>&linkspace;:&gt;&gt;&linkspace;<place>resultfn</place></onemore> <optional><place>default</place></optional>))</spec>
+        <desc>Evaluates (<place>pred</place> <place>testexpr</place> <place>expr</place>) for each <place>testexpr</place> in order. When one is 
+        true, corresponding <returnvalue>resultexpr</returnvalue> or <returnvalue>(<place>resultfn</place> (<place>pred</place> <place>testexpr</place> <place>expr</place>))</returnvalue>. 
+        If none are true, <returnvalue>default</returnvalue> or <exception>IllegalArgumentException</exception>.</desc>
     </section>
     <section name="Iteration">
 

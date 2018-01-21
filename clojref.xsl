@@ -35,9 +35,7 @@
         <br/>
     </xsl:template>
 
-    <xsl:template match="optional">
-        &#8990;<xsl:apply-templates/>&#8989;
-    </xsl:template>
+    <xsl:template match="optional">&#8990;<xsl:apply-templates/>&#8989;</xsl:template>
 
     <xsl:template match="place">
         <span class="place">
@@ -77,6 +75,11 @@
         <span class="keyword"><xsl:apply-templates/></span>
     </xsl:template>
 
+    <xsl:template match="exception">
+        <span class="keywordDecorator">e</span>
+        <span class="keyword"><xsl:apply-templates/></span>
+    </xsl:template>
+    
 
     <xsl:template match="block">
         <mfenced>
