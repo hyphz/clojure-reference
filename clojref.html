@@ -190,7 +190,7 @@
          
          
          <dd><span class="desc">▷ If <span class="place">test</span> is true (or for <span class="keywordDecorator">m</span><span class="keyword">if-some</span> only non-nil),
-               <span class="returnValue">(<span class="keywordDecorator">s</span><span class="keyword">let</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span>)</span>,
+               <span class="returnValue">(<span class="keywordDecorator">m</span><span class="keyword">let</span> [<span class="place">var</span> <span class="place">test</span>] <span class="place">then</span>)</span>,
                otherwise <span class="returnValue"><span class="place">else</span></span>.
                </span></dd><br>
          
@@ -267,6 +267,83 @@
          
          <dd><span class="desc">▷ Evaluates <span class="place">forms</span> until <span class="place">test</span>
                returns false or nil.</span></dd><br>
+         
+      </dl>
+      
+      
+      <h2>Java Interop</h2>
+      <hr>
+      <dl>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">s</span><span class="keyword">new</span> <span class="place">classname</span> <span class="place">arg</span><span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dt><span class="spec">(<span class="place">classname</span>. <span class="place">arg</span><span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Returns a new instance of Java/JavaScript class <span class="place">classname</span>, passing <span class="place">args</span> to the constructor.</span></dd><br>
+         
+         
+         <dt><span class="spec">(.<span class="place">field</span> <span class="place">instance</span> <span class="place">arg</span><span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">s</span><span class="keyword">.</span> <span class="place">instance</span> <span class="place">field</span>|(<span class="place">field</span> <span class="place">arg</span><span class="repeatmodifier">*</span>)|<span class="place">field</span> <span class="place">arg</span><span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Returns the value of property, or the result of calling method, <span class="place">field</span> in object <span class="place">instance</span>, passing arguments <span class="place">args</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(.-<span class="place">field</span> <span class="place">instance</span>)</span></dt>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">s</span><span class="keyword">.</span> <span class="place">instance</span> <span class="place">-field</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Returns the value of property <span class="place">field</span> in object <span class="place">instance</span>. Cannot call methods.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="place">class</span>/<span class="place">field</span> arg<span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dt><span class="spec">(<span class="keywordDecorator">s</span><span class="keyword">.</span> <span class="place">class</span> <span class="place">field</span>|(<span class="place">field</span> <span class="place">arg</span><span class="repeatmodifier">*</span>)|<span class="place">field</span> <span class="place">arg</span><span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Returns the value of static property, or the result of calling static method, <span class="place">field</span> in class <span class="place">class</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec"><span class="place">class</span>/<span class="place">field</span></span></dt>    
+         
+         <dd><span class="desc">▷ Returns the value of static property <span class="place">field</span> in <span class="place">class</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(.<span class="place">field</span> <span class="place">class</span> arg<span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Returns the value of property, or the result of calling method, <span class="place">field</span> on the Class object 
+               representing class <span class="place">class</span> for reflection.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">..</span> <span class="place">instance</span>|<span class="place">class</span> <span class="place">field</span><span class="repeatmodifier">+</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Nested property access. Equivalent to applying .<span class="place">field</span> for each member of <span class="place">fields</span> 
+               in order, starting from <span class="place">instance</span> or <span class="place">class</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">doto</span> <span class="place">instance</span> (<span class="place">method</span> <span class="place">arg</span><span class="repeatmodifier">*</span>)<span class="repeatmodifier">*</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Calls each method in <span class="place">methods</span> - which must be in .<span class="place">method</span> format - in order, with 
+               its appropriate <span class="place">args</span>, on <span class="place">instance</span>.</span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">gen-class</span> :name <span class="place">name</span> <sub>⌞</sub>:extends parent<span class="defaultValue">Object</span><sup>⌝</sup>
+               <sub>⌞</sub>:implements [<span class="place">interface</span><span class="repeatmodifier">+</span>]<sup>⌝</sup> <sub>⌞</sub>:init <span class="place">conName</span><sup>⌝</sup>
+               <sub>⌞</sub>:constructors {[<span class="place">paramtype</span><span class="repeatmodifier">+</span>]⎵[<span class="place">superparamtype</span><span class="repeatmodifier">+</span>]<span class="repeatmodifier">+</span>}<sup>⌝</sup>
+               <sub>⌞</sub>:post-init name<sup>⌝</sup> <sub>⌞</sub>:methods [ [<span class="place">name</span> [<span class="place">paramtype</span><span class="repeatmodifier">*</span>] <span class="place">returntype</span>]<span class="repeatmodifier">+</span>]<sup>⌝</sup>
+               <sub>⌞</sub>:main bool<span class="defaultValue">false</span><sup>⌝</sup> <sub>⌞</sub>:factory facname<sup>⌝</sup> <sub>⌞</sub>:state statename<sup>⌝</sup>
+               <sub>⌞</sub>:exposes {fieldname⎵{:get settername :set <span class="place">settername</span>}<span class="repeatmodifier">+</span>}<sup>⌝</sup>
+               <sub>⌞</sub>:exposes-methods {supermethodname⎵exposedname<span class="repeatmodifier">+</span>}<sup>⌝</sup>
+               <sub>⌞</sub>:prefix <span class="place">string</span><span class="defaultValue">"-"</span><sup>⌝</sup><sub>⌞</sub>:impl-ns <span class="place">namespace</span><sup>⌝</sup>
+               <sub>⌞</sub>:load-impl-ns <span class="place">loadimpl</span><span class="defaultValue">true</span><sup>⌝</sup>)</span></dt>
+         
+         <dd><span class="desc">▷ Creates a compiled class file named <span class="place">name</span> with methods which look up Clojure functions in namespace <span class="place">namespace</span> 
+               with names equal to the name of the method prefixed with <span class="place">prefix</span>. </span></dd><br>
+         
+         
+         <dt><span class="spec">(<span class="keywordDecorator">m</span><span class="keyword">reify</span> <span class="place">parent</span>⎵(<span class="place">method</span> [<span class="place">arg</span><span class="repeatmodifier">+</span>] <span class="place">body</span>)<span class="repeatmodifier">*</span><span class="repeatmodifier">+</span>)</span></dt>
+         
+         <dd><span class="desc">▷ Creates an instance of an anonymous class extending each <span class="place">parent</span> and implementing or overriding each <span class="place">method</span>
+               in that parent with the code in <span class="place">body</span>.</span></dd><br>
          
       </dl>
       

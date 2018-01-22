@@ -116,7 +116,7 @@
         <spec>(<macro>if-some</macro> [<place>var</place> <place>test</place>] <place>then</place> <optional><place>else</place></optional>)</spec>
         
         <desc>If <math><place>test</place></math> is true (or for <math><macro>if-some</macro></math> only non-nil),
-                    <returnvalue>(<special>let</special> [<place>var</place> <place>test</place>] <place>then</place>)</returnvalue>,
+                    <returnvalue>(<macro>let</macro> [<place>var</place> <place>test</place>] <place>then</place>)</returnvalue>,
                 otherwise <returnvalue><place>else</place></returnvalue>.
         </desc>
 
@@ -167,5 +167,54 @@
         <spec>(<macro>while</macro> <place>test</place> <nonemore><place>form</place></nonemore>)</spec>
         <desc>Evaluates <math><place>forms</place></math> until <math><place>test</place></math>
             returns false or nil.</desc>
+    </section>
+    
+    <section name="Java Interop">
+        <spec>(<special>new</special> <place>classname</place> <nonemore><place>arg</place></nonemore>)</spec>
+        <spec>(<place>classname</place>. <nonemore><place>arg</place></nonemore>)</spec>
+        <desc>Returns a new instance of Java/JavaScript class <place>classname</place>, passing <place>args</place> to the constructor.</desc>
+        
+        <spec>(.<place>field</place> <place>instance</place> <nonemore><place>arg</place></nonemore>)</spec>
+        <spec>(<special>.</special> <place>instance</place> <place>field</place>|(<place>field</place> <nonemore><place>arg</place></nonemore>)|<place>field</place> <nonemore><place>arg</place></nonemore>)</spec>
+        <desc>Returns the value of property, or the result of calling method, <place>field</place> in object <place>instance</place>, passing arguments <place>args</place>.</desc>
+        
+        <spec>(.-<place>field</place> <place>instance</place>)</spec>
+        <spec>(<special>.</special> <place>instance</place> <place>-field</place>)</spec>
+        <desc>Returns the value of property <place>field</place> in object <place>instance</place>. Cannot call methods.</desc>
+        
+        <spec>(<place>class</place>/<place>field</place> <nonemore><field>arg</field></nonemore>)</spec>
+        <spec>(<special>.</special> <place>class</place> <place>field</place>|(<place>field</place> <nonemore><place>arg</place></nonemore>)|<place>field</place> <nonemore><place>arg</place></nonemore>)</spec>
+        <desc>Returns the value of static property, or the result of calling static method, <place>field</place> in class <place>class</place>.</desc>
+    
+        <spec><place>class</place>/<place>field</place></spec>    
+        <desc>Returns the value of static property <place>field</place> in <place>class</place>.</desc>
+        
+        <spec>(.<place>field</place> <place>class</place> <nonemore><field>arg</field></nonemore>)</spec>
+        <desc>Returns the value of property, or the result of calling method, <place>field</place> on the Class object 
+            representing class <place>class</place> for reflection.</desc>
+        
+        <spec>(<macro>..</macro> <place>instance</place>|<place>class</place> <onemore><place>field</place></onemore>)</spec>
+        <desc>Nested property access. Equivalent to applying .<place>field</place> for each member of <place>fields</place> 
+            in order, starting from <place>instance</place> or <place>class</place>.</desc>
+        
+        <spec>(<macro>doto</macro> <place>instance</place> <nonemore>(<place>method</place> <nonemore><place>arg</place></nonemore>)</nonemore>)</spec>
+        <desc>Calls each method in <place>methods</place> - which must be in .<place>method</place> format - in order, with 
+        its appropriate <place>args</place>, on <place>instance</place>.</desc>
+        
+        <spec>(<macro>gen-class</macro> :name <place>name</place> <optional>:extends <defaulted default="Object">parent</defaulted></optional>
+        <optional>:implements [<onemore><place>interface</place></onemore>]</optional> <optional>:init <place>conName</place></optional>
+        <optional>:constructors {<onemore>[<onemore><place>paramtype</place></onemore>]&linkspace;[<onemore><place>superparamtype</place></onemore>]</onemore>}</optional>
+        <optional>:post-init <value>name</value></optional> <optional>:methods [ <onemore>[<place>name</place> [<nonemore><place>paramtype</place></nonemore>] <place>returntype</place>]</onemore>]</optional>
+            <optional>:main <defaulted default="false"><value>bool</value></defaulted></optional> <optional>:factory <value>facname</value></optional> <optional>:state <value>statename</value></optional>
+            <optional>:exposes {<onemore><value>fieldname</value>&linkspace;{:get <value>settername</value> :set <place>settername</place>}</onemore>}</optional>
+            <optional>:exposes-methods {<onemore><value>supermethodname</value>&linkspace;<value>exposedname</value></onemore>}</optional>
+            <optional>:prefix <defaulted default='"-"'><place>string</place></defaulted></optional><optional>:impl-ns <place>namespace</place></optional>
+            <optional>:load-impl-ns <defaulted default="true"><place>loadimpl</place></defaulted></optional>)</spec>
+        <desc>Creates a compiled class file named <place>name</place> with methods which look up Clojure functions in namespace <place>namespace</place> 
+        with names equal to the name of the method prefixed with <place>prefix</place>. </desc>
+        
+        <spec>(<macro>reify</macro> <onemore><place>parent</place>&linkspace;<nonemore>(<place>method</place> [<onemore><place>arg</place></onemore>] <place>body</place>)</nonemore></onemore>)</spec>
+        <desc>Creates an instance of an anonymous class extending each <place>parent</place> and implementing or overriding each <place>method</place>
+        in that parent with the code in <place>body</place>.</desc>
     </section>
 </reference>
