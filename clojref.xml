@@ -46,21 +46,60 @@
         <desc>
             <returnvalue>true</returnvalue> if a is even or odd, respectively. </desc>
 
+        <spec>(<function>nil?</function> <place>a</place>)</spec>
+        <desc><returnvalue>true</returnvalue> if a is nil, otherwise false.</desc>
+        <spec>(<function>true?</function> <place>a</place>)</spec>
+        <desc><returnvalue>true</returnvalue> if a is the value true, otherwise false.</desc>
+        <spec>(<function>true?</function> <place>a</place>)</spec>
+        <desc><returnvalue>true</returnvalue> if a is the value false, otherwise false.</desc>
+        
+       
+        <spec>(<function>bigdec?</function> <place>a</place>) </spec>
+        <spec>(<function>char?</function> <place>a</place>) </spec>   
+        <spec>(<function>class?</function> <place>a</place>) </spec>        
+        <spec>(<function>decimal?</function> <place>a</place>) </spec>
+        <spec>(<function>delay?</function> <place>a</place>) </spec>        
+        <spec>(<function>double?</function> <place>a</place>) </spec>        
+        <spec>(<function>float?</function> <place>a</place>) </spec>
+        <spec>(<function>ident?</function> <place>a</place>) </spec>        
+        <spec>(<function>int?</function> <place>a</place>) </spec>
+        <spec>(<function>integer?</function> <place>a</place>) </spec>
+        <spec>(<function>keyword?</function> <place>a</place>) </spec>        
+        <spec>(<function>nat-int?</function> <place>a</place>) </spec>        
         <spec>(<function>number?</function> <place>a</place>) </spec>
+        <spec>(<function>qualified-keyword?</function> <place>a</place>) </spec>
+        <spec>(<function>qualified-symbol?</function> <place>a</place>) </spec>
+        <spec>(<function>qualified-ident?</function> <place>a</place>) </spec>        
+        <spec>(<function>pos-int?</function> <place>a</place>) </spec>        
         <spec>(<function>ratio?</function> <place>a</place>) </spec>
         <spec>(<function>rational?</function> <place>a</place>) </spec>
-        <spec>(<function>integer?</function> <place>a</place>) </spec>
-        <spec>(<function>int?</function> <place>a</place>) </spec>
-        <spec>(<function>pos-int?</function> <place>a</place>) </spec>
-        <spec>(<function>nat-int?</function> <place>a</place>) </spec>
-        <spec>(<function>decimal?</function> <place>a</place>) </spec>
-        <spec>(<function>bigdec?</function> <place>a</place>) </spec>
-        <spec>(<function>float?</function> <place>a</place>) </spec>
-        <spec>(<function>double?</function> <place>a</place>) </spec>
+        <spec>(<function>simple-keyword?</function> <place>a</place>) </spec>
+        <spec>(<function>simple-symbol?</function> <place>a</place>) </spec>
+        <spec>(<function>simple-ident?</function> <place>a</place>) </spec>
+        <spec>(<function>special-symbol?</function> <place>a</place>) </spec>
+        <spec>(<function>string?</function> <place>a</place>) </spec>      
+        <spec>(<function>symbol?</function> <place>a</place>) </spec>       
+        <spec>(<function>var?</function> <place>a</place>) </spec>
+        
         <desc>
             <returnvalue>true</returnvalue> if a is of indicated type. </desc>
         
         
+        <spec>(<function>coll?</function> <place>a</place>) </spec>
+        <spec>(<function>seq?</function> <place>a</place>) </spec>
+        <spec>(<function>vector?</function> <place>a</place>) </spec>
+        <spec>(<function>list?</function> <place>a</place>) </spec>
+        <spec>(<function>map?</function> <place>a</place>) </spec>
+        <spec>(<function>set?</function> <place>a</place>) </spec>
+        <desc><returnvalue>true</returnvalue> if a implements standard interface for given metatype.</desc>
+        
+        
+        <spec>(<function>extends?</function> <place>protocol</place> <place>type</place>)</spec>
+        <spec>(<function>satisfies?</function> <place>protocal</place> <place>a</place>)</spec>
+        <desc><returnvalue>true</returnvalue> if <place>type</place>, or type of <place>a</place>, extends <place>protocol</place>.</desc>
+        
+        <spec>(<function>instance?</function> <place>javaClass</place> <place>a</place>)</spec>
+        <desc><returnvalue>true</returnvalue> if <place>a</place>, after evaluation, is an instance of <place>javaClass</place>.</desc>
     </section>
 
     <section name="Numeric Functions">
@@ -98,8 +137,40 @@
         <spec>(<function>rand</function> <defaulted default="1.0"><optional><place>x</place></optional></defaulted>)</spec>
         <spec>(<function>rand-int</function> <place>x</place>)</spec>
         <desc>Returns a random float or int respectively, &gt;=0 and &lt;<place>x</place>.</desc>
+        
+        <spec>(<macro>with-precision</macro> <place>precision</place> <optional>:rounding <defaulted default="HALF_UP">CEILING|FLOOR|HALF_UP|HALF_DOWN|HALF_EVEN|UP|DOWN|UNNECESSARY</defaulted></optional> <onemore>forms</onemore>)</spec>
+        <desc>Performs BigDecimal operations in <place>forms</place> with the given precision and rounding method.</desc>
     </section>
     
+    <section name="Structure">
+        
+        <spec>(<special>def</special> <optional>^{ <optional>:private <defaulted default="false">true|false</defaulted></optional>
+                                                   <optional>:doc <place>docs</place></optional>
+                                                   <optional>:test <place>forms</place></optional>
+                                                   <optional>:tag <place>type</place></optional>
+            }</optional>
+            <place>symbol</place> <optional><place>docstring</place></optional> <optional><place>value</place></optional>)</spec>
+        <desc>Creates or locates a global var with the given name, sets it to the given value and returns it.</desc>
+        
+        <spec>(<macro>defonce</macro> <optional>^{ <optional>:private <defaulted default="false">true|false</defaulted></optional>
+            <optional>:doc <place>docs</place></optional>
+            <optional>:test <place>forms</place></optional>
+            <optional>:tag <place>type</place></optional>
+            }</optional>
+            <place>symbol</place> <place>value</place>)</spec>
+        <desc>Creates a global var with the given name and value and returns it, only if it does not already exist.</desc>
+        
+        <spec>(<function>intern</function> <place>ns</place> <place>name</place> <optional><place>val</place></optional>)</spec>
+        <desc>Creates or locates a global var named by the given name in the given namespace, sets it to val, and returns it.</desc>
+    
+        <spec>(<macro>declare</macro> <onemore><optional>^{ <optional>:private <defaulted default="false">true|false</defaulted></optional>
+            <optional>:doc <place>docs</place></optional>
+            <optional>:test <place>forms</place></optional>
+            <optional>:tag <place>type</place></optional>
+            }</optional>&linkspace;
+            <place>symbol</place></onemore>)</spec>
+        <desc>Defines all of the given names, without initial values.</desc>
+    </section>
     <section name="Sequence">
         
         <spec>(<special>do</special> <nonemore><place>form</place></nonemore> <place>lastform</place>)</spec>
@@ -149,7 +220,7 @@
     <section name="Iteration">
 
         <spec>(<macro>loop</macro> [<nonemore><place>var</place>&linkspace;<place>binding</place></nonemore>]
-                     <nonemore><place>form</place></nonemore></spec>
+                     <nonemore><place>form</place></nonemore>)</spec>
         <desc>Evaluates <place>forms</place> with the given bound vars and serves as a marker
             for <special>recur</special>.</desc>
 
@@ -158,15 +229,32 @@
                     <place>bindings</place> in order, then returns control to the start of
             that <macro>loop</macro>.</desc>
 
-        <spec>
-                (<function>trampoline</function> <place>f</place> <nonemore><place>args</place></nonemore>)</spec>
+        <spec>(<function>trampoline</function> <place>f</place> <nonemore><place>args</place></nonemore>)</spec>
         <desc>If the value of <math>(<mi>f</mi>
                 <mi>args</mi>)</math> is not a function, <returnvalue>(<place>f</place> <place>args</place>)</returnvalue>. Else, 
                     <returnvalue>(<function>trampoline</function> (<place>f</place> <place>args</place>))</returnvalue>.</desc>
 
         <spec>(<macro>while</macro> <place>test</place> <nonemore><place>form</place></nonemore>)</spec>
-        <desc>Evaluates <math><place>forms</place></math> until <math><place>test</place></math>
+        <desc>Evaluates <place>forms</place> until <place>test</place>
             returns false or nil.</desc>
+        
+        <spec>(<macro>for</macro> [<onemore><place>var</place>&linkspace;<place>listexpr</place>&linkspace;
+<optional>:let [<onemore><place>binding</place>&linkspace;<place>expr</place></onemore>]</optional>&linkspace;
+<optional>:while <place>expr</place></optional>&linkspace;
+<optional>:when <place>expr</place></optional></onemore>] <nonemore><place>form</place></nonemore>)</spec>
+        <desc>Evaluates <place>forms</place> with <place>vars</place> bound to all values in each <place>listexpr</place> 
+        and returns a sequence of the results.</desc>
+        
+        <spec>(<macro>doseq</macro> [<onemore><place>var</place>&linkspace;<place>listexpr</place>&linkspace;
+            <optional>:let [<onemore><place>binding</place>&linkspace;<place>expr</place></onemore>]</optional>&linkspace;
+            <optional>:while <place>expr</place></optional>&linkspace;
+            <optional>:when <place>expr</place></optional></onemore>] <nonemore><place>form</place></nonemore>)</spec>
+        <desc>Evaluates <place>forms</place> for side effects with <place>vars</place> bound to all values in each <place>listexpr</place> 
+            and returns <returnvalue>nil</returnvalue>.</desc>
+ 
+       <spec>(<macro>dotimes</macro> [<place>var</place> <place>max</place>] <nonemore><place>form</place></nonemore>)</spec>
+        <desc>Evaluates <place>forms</place> for side effects with <place>var</place> bound to each int from 0 to <place>max</place> minus 1.</desc>
+        
     </section>
     
     <section name="Java Interop">
